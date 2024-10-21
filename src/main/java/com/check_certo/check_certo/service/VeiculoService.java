@@ -21,14 +21,18 @@ public class VeiculoService {
         System.out.println("O resultado da placa é: "+placa);
         System.out.println("O resultado do CPF é: "+cpf);
 
-        /*
+
         if (cpf) {
             throw new Exception("Esse CPF já existe nessa base");
         }
         if (placa) {
-            throw new Exception("Esse CPF já existe nessa base");
+            throw new Exception("Essa placa já existe nessa base");
         }
-        */
+
+
+
 
     }
+
+
 }

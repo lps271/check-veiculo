@@ -18,7 +18,7 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String proprietario;
-    private String cpfProprietario;
+    private String cpf;
     private String placa;
     private String chassi;
     private String marca;

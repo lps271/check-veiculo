@@ -16,20 +16,22 @@ public class VeiculoService {
 
     public ResponseEntity<Veiculo> salvarVeiculo(Veiculo veiculoParametro) throws Exception {
 
-        //verifica na base de dados se o CPF informado já existe na base
+        //verifica se o CPF e a placa informada já existem na base
         verificaPlacaECpf(veiculoParametro);
 
         RestTemplate restTemplate = new RestTemplate();
-
+        //realiza consulta a API externa usando a placa do veiculo que foi recebido como parametro neste metodo
         ResponseEntity<Veiculo> veiculoRetorno =
                 restTemplate
                         .getForEntity("https://my.api.mockaroo.com/veiculos?key=55ad1cd0&placa="+veiculoParametro.getPlaca(),Veiculo.class);
 
-
-        Veiculo veiculoDeTransicao = veiculoRetorno.getBody();
+        //Este trecho completa o objeto recebido da API externa
         veiculoRetorno.getBody().setProprietario(veiculoParametro.getProprietario());
         veiculoRetorno.getBody().setCpf(veiculoParametro.getCpf());
         veiculoRetorno.getBody().setPlaca(veiculoParametro.getPlaca());
+
+        //aqui estamos salvando o veiculo na base de dados
+        veiculoRepository.save(veiculoRetorno.getBody());
         return veiculoRetorno;
 
     }

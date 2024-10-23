@@ -26,7 +26,6 @@ public class VeiculoController {
             throw new RuntimeException(e);
         }
 
-        // criar logica de manipular esse request
         return veiculoRetorno.getBody();
     }
 }

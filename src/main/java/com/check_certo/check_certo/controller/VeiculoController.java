@@ -17,15 +17,16 @@ public class VeiculoController {
     VeiculoService veiculoService;
 
     @PostMapping
-    public ResponseEntity<Veiculo> cadastrarVeiculo(@RequestBody Veiculo veiculo) {
+    public Veiculo cadastrarVeiculo(@RequestBody Veiculo veiculo) {
 
+        ResponseEntity<Veiculo> veiculoRetorno;
         try {
-            veiculoService.salvarVeiculo(veiculo);
+            veiculoRetorno = veiculoService.salvarVeiculo(veiculo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         // criar logica de manipular esse request
-        return null;
+        return veiculoRetorno.getBody();
     }
 }
